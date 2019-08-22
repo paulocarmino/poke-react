@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import NavItem from "./NavItem/navItem";
+import NavItem from "./navItem";
 
 export const Container = styled.div`
   height: 30px;

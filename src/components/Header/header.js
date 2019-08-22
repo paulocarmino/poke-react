@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import HeaderTabs from "./HeaderTabs/headerTabs";
+import HeaderTabs from "./headerTabs";
 
 export const Container = styled.div``;
 

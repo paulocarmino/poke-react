@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import PokeAvatar from "./PokeAvatar/pokeAvatar";
+import PokeAvatar from "./pokeAvatar";
 import PokeInfo from "./PokeInfo/pokeInfo";
 
 export const Container = styled.div`
@@ -11,11 +11,11 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export default function PokeCard() {
+export default function PokeCard({ data }) {
   return (
     <Container>
-      <PokeAvatar />
-      <PokeInfo />
+      <PokeAvatar avatar={data.avatar} />
+      <PokeInfo pokemon={data} />
     </Container>
   );
 }

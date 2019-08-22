@@ -1,52 +1,20 @@
 import React from "react";
-import styled from "styled-components";
 
-export const Container = styled.div`
-  width: 88px;
-  padding: 5px 5px 5px 15px;
+import { Container, Label } from "./styles";
+import PokeName from "./pokeName";
 
-  flex: 1;
-
-  h3 {
-    font-size: 1rem;
-  }
-
-  h3 span {
-    color: #c9c9c9;
-  }
-
-  p {
-    margin-top: 8px;
-    font-size: 0.7rem;
-    text-align: justify;
-  }
-`;
-
-export const Label = styled.label`
-  padding: 2px 6px;
-  border-radius: 2px;
-  text-transform: uppercase;
-  font-size: 0.6rem;
-  color: #fff;
-  background: ${props => (props.color ? props.color : "#c9c9c9")};
-
-  & + label {
-    margin-left: 8px;
-  }
-`;
-
-export default function PokeInfo() {
+export default function PokeInfo({ pokemon }) {
   return (
     <Container>
       <h3>
-        <span>#001</span> Bulbasaur
+        <span>#00{pokemon.id}</span> <PokeName name={pokemon.name} />
       </h3>
-      <Label color="#6DB067">Grass</Label>
-      <Label color="#927ABB">Grass</Label>
-      <p>
-        Bulbassaur can be seen napping in bright sunlight. There is a seed on
-        its back...
-      </p>
+      {pokemon.types.map(type => (
+        <Label key={type.name} color={type.color}>
+          {type.name}
+        </Label>
+      ))}
+      <p>{pokemon.description}</p>
     </Container>
   );
 }

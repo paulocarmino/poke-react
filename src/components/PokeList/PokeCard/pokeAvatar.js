@@ -11,13 +11,10 @@ export const Container = styled.div`
   }
 `;
 
-export default function PokeAvatar() {
+export default function PokeAvatar({ avatar }) {
   return (
     <Container>
-      <img
-        src="https://api.adorable.io/avatars/88/abott@adorable.png"
-        alt="Poke Avatar"
-      />
+      <img src={avatar} alt="Poke Avatar" />
     </Container>
   );
 }

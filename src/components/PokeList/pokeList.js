@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { loadPokemons } from "../../services/api";
+
 import PokeCard from "./PokeCard/pokeCard";
 
 export const Container = styled.div`
@@ -10,19 +12,14 @@ export const Container = styled.div`
   // border: 1px solid #000;
 `;
 
+const pokemons = loadPokemons();
+
 export default function PokeList() {
   return (
     <Container>
-      <PokeCard />
-      <PokeCard />
-      <PokeCard />
-      <PokeCard />
-      <PokeCard />
-      <PokeCard />
-      <PokeCard />
-      <PokeCard />
-      <PokeCard />
-      <PokeCard />
+      {pokemons.map(pokemon => (
+        <PokeCard key={pokemon.id} data={pokemon} />
+      ))}
     </Container>
   );
 }
