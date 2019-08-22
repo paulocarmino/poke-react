@@ -36,3 +36,5 @@ export default createGlobalStyle`
   }
 `;
 ```
+
+- Criado os components necessários com styled-componets: (Preencher depois);
