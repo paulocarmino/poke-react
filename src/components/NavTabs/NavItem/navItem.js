@@ -2,14 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 60px;
-  padding: 0 30px;
-
-  display: flex;
+  margin-right: 10px;
 
   p {
-    margin-right: 14px;
-    font-size: 2rem;
+    font-size: 0.9rem;
     font-weight: bold;
     color: #c9c9c9;
     cursor: pointer;
@@ -17,14 +13,14 @@ export const Container = styled.div`
 
   p.active {
     color: #333;
+    border-bottom: 3px solid #333;
   }
 `;
 
-export default function HeaderTabs() {
+export default function NavItem(props) {
   return (
     <Container>
-      <p className="active">All</p>
-      <p>Favourites</p>
+      <p className={props.active && "active"}>{props.children}</p>
     </Container>
   );
 }

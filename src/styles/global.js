@@ -12,11 +12,13 @@ export default createGlobalStyle`
 
 	html, body, #root {
 		height: 100%;
+		max-width: 375px;
+		margin-top: 10px;
 	}
 
 	body {
 		font: 14px 'Roboto', sans-serif;
-		background: #ecf1f8;
+		background: #fff;
 		color: #333;
 		-webkit-font-smoothing: antialiased !important;
 		-moz-osx-font-smoothing: grayscale !important;
