@@ -1,10 +1,13 @@
 import React from "react";
 
+import GlobalStyle from "../styles/global";
+
 import PokeApi from "../pokeApi";
 
-export const App = () => (
-  <div>
-    <p>Oi Marvel API</p>
-  </div>
+const App = () => (
+  <>
+    <h1>Olá PokeApi</h1>
+    <GlobalStyle />
+  </>
 );
 export default App;
