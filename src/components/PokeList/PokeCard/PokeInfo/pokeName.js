@@ -1,16 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-export const First = styled.div`
-  text-transform: uppercase;
+export const Container = styled.div`
+  text-transform: capitalize;
   display: inline;
 `;
 
-const PokeInfo = ({ name }) => (
-  <>
-    <First>{name[0]}</First>
-    {name.slice(1)}
-  </>
-);
-
-export default PokeInfo;
+export default function PokeInfo({ pokemonName }) {
+  return <Container>{pokemonName ? pokemonName : ''}</Container>;
+}

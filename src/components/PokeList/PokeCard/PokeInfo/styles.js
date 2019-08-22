@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 88px;
@@ -24,7 +24,7 @@ export const Container = styled.div`
   }
 
   p:after {
-    content: "";
+    content: '';
     text-align: right;
     position: absolute;
     bottom: 0;
@@ -45,7 +45,7 @@ export const Label = styled.label`
   text-transform: uppercase;
   font-size: 0.6rem;
   color: #fff;
-  background: ${props => (props.color ? props.color : "#c9c9c9")};
+  background: ${props => (props.color ? props.color : '#c9c9c9')};
 
   & + label {
     margin-left: 8px;
