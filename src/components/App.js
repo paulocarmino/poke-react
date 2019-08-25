@@ -8,7 +8,7 @@ import NavTabs from "./NavTabs/navTabs";
 import PokeList from "./PokeList/pokeList";
 
 export const client = new ApolloClient({
-  uri: "http://localhost:3333/"
+  uri: "http://192.168.1.101:3333/"
 });
 
 const App = () => (
