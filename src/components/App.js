@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+import SwipeableRoutes from "react-swipeable-routes";
 
 import GlobalStyle from "../styles/global";
 import Header from "./Header/header";
@@ -18,8 +19,10 @@ const App = () => (
     <Header />
     <Router>
       <NavTabs />
-      <Route path="/" exact component={PokeList} />
-      <Route path="/items/" component={ItemList} />
+      <SwipeableRoutes>
+        <Route path="/" exact component={PokeList} />
+        <Route path="/items/" component={ItemList} />
+      </SwipeableRoutes>
     </Router>
     <GlobalStyle />
   </ApolloProvider>
