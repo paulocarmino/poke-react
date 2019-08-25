@@ -8,6 +8,7 @@ export const Container = styled.div`
 
   img {
     border-radius: 5%;
+    border: 1px solid #c9c9c9;
   }
 `;
 

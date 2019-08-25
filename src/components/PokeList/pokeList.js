@@ -73,7 +73,8 @@ export default function PokeList() {
 }
 
 export const Container = styled.div`
-  height: calc(100% - 90px);
+  // height: calc(100% - 90px);
+  overflow-y: hidden;
   margin: 0 30px;
 `;
 

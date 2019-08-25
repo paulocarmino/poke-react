@@ -6,6 +6,7 @@ import ContentLoader from "react-content-loader";
 import styled from "styled-components";
 
 import Error from "../../assets/error.svg";
+import ItemCard from "./ItemCard/itemCard";
 
 export default function ItemList() {
   const { loading, error, data } = useQuery(gql`
@@ -57,8 +58,7 @@ export default function ItemList() {
   return (
     <Container>
       {data.items.map(item => (
-        <p>{item.name}</p>
-        // <PokeCard key={item.id} pokemon={item} />
+        <ItemCard item={item} />
       ))}
     </Container>
   );
