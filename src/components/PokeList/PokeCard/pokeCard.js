@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import PokeAvatar from './pokeAvatar';
-import PokeInfo from './PokeInfo/pokeInfo';
-
-import { getPokemonByName } from '../../../services/pokeApi';
+import PokeAvatar from "./pokeAvatar";
+import PokeInfo from "./PokeInfo/pokeInfo";
 
 export const Container = styled.div`
   height: 100px;
@@ -13,19 +11,11 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export default function PokeCard({ pokemonName }) {
-  const [pokemon, setPokemon] = useState('');
-
-  useEffect(() => {
-    getPokemonByName(pokemonName).then(data => {
-      setPokemon(data);
-    });
-  });
-
+export default function PokeCard({ pokemon, id }) {
   return (
     <Container>
-      <PokeAvatar avatar={pokemon.sprites} />
-      <PokeInfo pokemon={pokemon} />
+      <PokeAvatar avatar={pokemon.thumb} />
+      <PokeInfo pokemon={pokemon} id={id} />
     </Container>
   );
 }

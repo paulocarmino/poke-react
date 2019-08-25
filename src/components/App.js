@@ -1,18 +1,22 @@
 import React from "react";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
 
 import GlobalStyle from "../styles/global";
 import Header from "./Header/header";
 import NavTabs from "./NavTabs/navTabs";
 import PokeList from "./PokeList/pokeList";
 
-// import PokeApi from "../pokeApi";
+export const client = new ApolloClient({
+  uri: "http://localhost:3333/"
+});
 
 const App = () => (
-  <>
+  <ApolloProvider client={client}>
     <Header />
     <NavTabs />
     <PokeList />
     <GlobalStyle />
-  </>
+  </ApolloProvider>
 );
 export default App;

@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 export const Container = styled.div`
   height: 88px;
@@ -12,6 +12,6 @@ export const Container = styled.div`
 `;
 
 export default function PokeAvatar({ avatar }) {
-  const pokeAvatar = avatar ? avatar.front_default : '';
+  const pokeAvatar = avatar ? avatar : "";
   return <Container>{<img src={pokeAvatar} alt="Poke Avatar" />}</Container>;
 }

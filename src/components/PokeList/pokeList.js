@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
 
-import PokeCard from './PokeCard/pokeCard';
+import styled from "styled-components";
 
-import { getPokemonsList } from '../../services/pokeApi';
+import PokeCard from "./PokeCard/pokeCard";
 
 export const Container = styled.div`
   height: calc(100% - 90px);
@@ -11,18 +12,25 @@ export const Container = styled.div`
 `;
 
 export default function PokeList() {
-  const [pokemonsList, setPokemons] = useState([]);
+  const { loading, error, data } = useQuery(gql`
+    {
+      pokemons {
+        id
+        name
+        description
+        thumb
+        types
+      }
+    }
+  `);
 
-  useEffect(() => {
-    getPokemonsList().then(data => {
-      setPokemons(data.results);
-    });
-  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
 
   return (
     <Container>
-      {pokemonsList.map(data => (
-        <PokeCard key={data.url} pokemonName={data.name} />
+      {data.pokemons.map((pokemon, i) => (
+        <PokeCard key={pokemon.id} pokemon={pokemon} id={i} />
       ))}
     </Container>
   );
