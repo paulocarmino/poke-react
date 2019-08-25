@@ -11,7 +11,7 @@ export const Container = styled.div`
     cursor: pointer;
   }
 
-  p.active {
+  p > a.active {
     color: #333;
     border-bottom: 3px solid #333;
   }
@@ -20,7 +20,7 @@ export const Container = styled.div`
 export default function NavItem(props) {
   return (
     <Container>
-      <p className={props.active && "active"}>{props.children}</p>
+      <p>{props.children}</p>
     </Container>
   );
 }
