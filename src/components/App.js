@@ -8,7 +8,7 @@ import GlobalStyle from "../styles/global";
 import Header from "./Header/header";
 import NavTabs from "./NavTabs/navTabs";
 import PokeList from "./PokeList/pokeList";
-import ItemList from "./ItemList/itemList";
+// import ItemList from "./ItemList/itemList";
 
 export const client = new ApolloClient({
   uri: "http://192.168.1.101:3333/"
@@ -21,7 +21,7 @@ const App = () => (
       <NavTabs />
       <SwipeableRoutes>
         <Route path="/" exact component={PokeList} />
-        <Route path="/items/" component={ItemList} />
+        {/* <Route path="/items/" component={ItemList} /> */}
       </SwipeableRoutes>
     </Router>
     <GlobalStyle />

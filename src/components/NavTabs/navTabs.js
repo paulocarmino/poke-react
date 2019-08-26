@@ -32,12 +32,13 @@ export default function NavTabs() {
         </LinkCustom>
       </NavItem>
 
-      <NavItem>
+      {/* <NavItem>
         <LinkCustom activeClassName="active" to="/items">
           Items
         </LinkCustom>
-      </NavItem>
+      </NavItem> */}
 
+      <NavItem>Items</NavItem>
       <NavItem>Gyms</NavItem>
       <NavItem>Characters</NavItem>
     </Container>

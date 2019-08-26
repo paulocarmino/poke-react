@@ -13,9 +13,11 @@ export default function PokeList() {
     {
       pokemons {
         id
+        number
         name
         description
-        thumb
+        img
+        color
         types
       }
     }

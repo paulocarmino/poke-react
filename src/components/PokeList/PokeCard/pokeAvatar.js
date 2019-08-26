@@ -8,11 +8,14 @@ export const Container = styled.div`
 
   img {
     border-radius: 5%;
-    border: 1px solid #c9c9c9;
+    // background-color: ${props => (props.color ? props.color : "white")};
+    height: 100%;
+    width: 100%;
+    padding: 5px;
   }
 `;
 
-export default function PokeAvatar({ avatar }) {
+export default function PokeAvatar({ avatar, color }) {
   const pokeAvatar = avatar ? avatar : "";
-  return <Container>{<img src={pokeAvatar} alt="Poke Avatar" />}</Container>;
+  return <Container color={color}>{<img src={pokeAvatar} alt="Poke Avatar" />}</Container>;
 }
