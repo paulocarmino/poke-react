@@ -1,21 +1,38 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 88px;
 
-  flex: 0 88px;
+  position: relative;
 
   img {
-    border-radius: 5%;
-    // background-color: ${props => (props.color ? props.color : "white")};
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
     height: 100%;
     width: 100%;
-    padding: 5px;
   }
 `;
 
+export const Ball = styled.div`
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  bottom: -65px;
+  right: -60px;
+
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  z-index: -1;
+`;
+
 export default function PokeAvatar({ avatar, color }) {
-  const pokeAvatar = avatar ? avatar : "";
-  return <Container color={color}>{<img src={pokeAvatar} alt="Poke Avatar" />}</Container>;
+  const pokeAvatar = avatar ? avatar : '';
+  return (
+    <Container color={color}>
+      {<img src={pokeAvatar} alt="Poke Avatar" />}
+      <Ball />
+    </Container>
+  );
 }

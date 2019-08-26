@@ -1,12 +1,12 @@
-import React from "react";
-import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
-import ContentLoader from "react-content-loader";
+import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import ContentLoader from 'react-content-loader';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import PokeCard from "./PokeCard/pokeCard";
-import Error from "../../assets/error.svg";
+import PokeCard from './PokeCard/pokeCard';
+import Error from '../../assets/error.svg';
 
 export default function PokeList() {
   const { loading, error, data } = useQuery(gql`
@@ -77,7 +77,10 @@ export default function PokeList() {
 export const Container = styled.div`
   // height: calc(100% - 90px);
   overflow-y: hidden;
-  margin: 0 30px;
+  margin: 15px 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
 `;
 
 export const ContainerError = styled.div`

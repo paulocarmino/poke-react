@@ -1,65 +1,54 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export default function PokeInfo({ pokemon }) {
   return (
     <Container>
-      {/* <span>#{pokemon.number}</span> */}
-      <h3>{pokemon.name}</h3>
-      {pokemon && pokemon.types.map((type, i) => <Label key={i}>{type}</Label>)}
-      {/* <p>{pokemon.description}</p> */}
+      <PokeBasicInfo>
+        <span>#{pokemon.number}</span>
+        <h3>{pokemon.name}</h3>
+      </PokeBasicInfo>
+      <TypesList>
+        {pokemon &&
+          pokemon.types.map((type, i) => <Label key={i}>{type}</Label>)}
+      </TypesList>
     </Container>
   );
 }
 
 export const Container = styled.div`
-  width: 88px;
-  padding: 5px 5px 5px 15px;
-
   flex: 1;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   span {
-    font-size: 0.8rem;
-    color: #8e8e8e;
-    font-weight: 600;
+    font-size: 0.7rem;
+    color: #fff;
   }
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 5px;
-  }
-
-  p {
-    margin-top: 8px;
-    font-size: 0.7rem;
-    text-align: justify;
-    position: relative;
-    overflow: hidden;
-    height: 3.6em;
-  }
-
-  p:after {
-    content: "";
-    text-align: right;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 35%;
-    height: 1.2em;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
+    color: #fff;
   }
 `;
 
-export const Label = styled.label`
-  margin-top: 10px;
-  padding: 2px 6px;
-  border-radius: 2px;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  color: #fff;
-  background: ${props => (props.color ? props.color : "#c9c9c9")};
+export const TypesList = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-  & + label {
-    margin-left: 8px;
-  }
+export const PokeBasicInfo = styled.div``;
+
+export const Label = styled.label`
+  width: 45px;
+  margin-bottom: 4px;
+  padding: 2px 6px;
+  border-radius: 25px;
+  text-align: center;
+  font-size: 0.6rem;
+  color: #fff;
+  background: ${props => (props.color ? props.color : '#c9c9c9')};
 `;
