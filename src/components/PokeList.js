@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
 
-import PokeCard from "./PokeCard/pokeCard";
-import Loading from "../Loading";
+import PokeCard from './PokeCard';
+import Loading from './Loading';
 
 const PokeList = () => {
   const [initialData, setInitialData] = useState({ pokemons: [] });
@@ -12,7 +12,7 @@ const PokeList = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await axios("http://192.168.1.6:3333/pokemons");
+      const result = await axios('http://10.61.217.146:3333/pokemons');
       setInitialData({ pokemons: result.data });
       setData({ pokemons: result.data });
       setTimeout(() => {
@@ -24,14 +24,22 @@ const PokeList = () => {
 
   const filterList = event => {
     let pokemonsFiltered = initialData.pokemons;
-    pokemonsFiltered = pokemonsFiltered.filter(pokemon => pokemon.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
+    pokemonsFiltered = pokemonsFiltered.filter(
+      pokemon =>
+        pokemon.name.toLowerCase().search(event.target.value.toLowerCase()) !==
+        -1
+    );
     setData({ pokemons: pokemonsFiltered });
   };
 
   if (loading.isLoading) {
     return (
       <>
-        <InputSearch type="text" placeholder="Search pokemons..." disabled />
+        <InputSearch
+          type="text"
+          placeholder="Search pokemons by name..."
+          disabled
+        />
         <Loading />
       </>
     );
@@ -39,7 +47,11 @@ const PokeList = () => {
 
   return (
     <>
-      <InputSearch type="text" placeholder="Search pokemons..." onChange={filterList} />
+      <InputSearch
+        type="text"
+        placeholder="Search pokemons by name..."
+        onChange={filterList}
+      />
       <Container>
         {data.pokemons.map((pokemon, i) => (
           <PokeCard key={pokemon._id} pokemon={pokemon} id={i} />
