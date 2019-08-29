@@ -1,82 +1,59 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-import ContentLoader from 'react-content-loader';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import axios from "axios";
 
-import styled from 'styled-components';
+import PokeCard from "./PokeCard/pokeCard";
+import Loading from "../Loading";
 
-import PokeCard from './PokeCard/pokeCard';
-import Error from '../../assets/error.svg';
+const PokeList = () => {
+  const [initialData, setInitialData] = useState({ pokemons: [] });
+  const [data, setData] = useState({ pokemons: [] });
+  const [loading, setLoading] = useState({ isLoading: true });
 
-export default function PokeList() {
-  const { loading, error, data } = useQuery(gql`
-    {
-      pokemons {
-        id
-        number
-        name
-        description
-        img
-        color
-        types
-      }
+  useEffect(() => {
+    async function fetchData() {
+      const result = await axios("http://192.168.1.6:3333/pokemons");
+      setInitialData({ pokemons: result.data });
+      setData({ pokemons: result.data });
+      setTimeout(() => {
+        setLoading({ isLoading: false });
+      }, 1000);
     }
-  `);
+    fetchData();
+  }, []);
 
-  const MyLoader = () => (
-    <ContentLoader
-      height={100}
-      width={400}
-      speed={2}
-      primaryColor="#e1e1e1"
-      secondaryColor="#d6d6d6"
-      style={{ marginBottom: 0, marginTop: 0 }}
-    >
-      <rect x="32" y="0" rx="5" ry="5" width="100" height="80" />
-      <rect x="150" y="2" rx="5" ry="5" width="150" height="10" />
-      <rect x="150" y="18" rx="5" ry="5" width="90" height="10" />
-      <rect x="150" y="38" rx="2" ry="2" width="200" height="6" />
-      <rect x="150" y="48" rx="2" ry="2" width="200" height="6" />
-      <rect x="150" y="58" rx="2" ry="2" width="200" height="6" />
-      <rect x="150" y="68" rx="2" ry="2" width="130" height="6" />
-    </ContentLoader>
-  );
+  const filterList = event => {
+    let pokemonsFiltered = initialData.pokemons;
+    pokemonsFiltered = pokemonsFiltered.filter(pokemon => pokemon.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
+    setData({ pokemons: pokemonsFiltered });
+  };
 
-  if (loading)
+  if (loading.isLoading) {
     return (
-      <ContainerLoading>
-        <MyLoader />
-        <MyLoader />
-        <MyLoader />
-        <MyLoader />
-        <MyLoader />
-        <MyLoader />
-        <MyLoader />
-        <MyLoader />
-        <MyLoader />
-        <MyLoader />
-      </ContainerLoading>
+      <>
+        <InputSearch type="text" placeholder="Search pokemons..." disabled />
+        <Loading />
+      </>
     );
-  if (error)
-    return (
-      <ContainerError>
-        <img src={Error} alt="Erro" width="300px" />
-        <TitleError className="marginup">Error :(</TitleError>
-      </ContainerError>
-    );
+  }
 
   return (
-    <Container>
-      {data.pokemons.map((pokemon, i) => (
-        <PokeCard key={pokemon.id} pokemon={pokemon} id={i} />
-      ))}
-    </Container>
+    <>
+      <InputSearch type="text" placeholder="Search pokemons..." onChange={filterList} />
+      <Container>
+        {data.pokemons.map((pokemon, i) => (
+          <PokeCard key={pokemon._id} pokemon={pokemon} id={i} />
+        ))}
+      </Container>
+    </>
   );
-}
+};
+
+export default PokeList;
 
 export const Container = styled.div`
   // height: calc(100% - 90px);
-  overflow-y: hidden;
+  overflow: hidden;
   margin: 15px 15px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -96,4 +73,15 @@ export const ContainerLoading = styled.div`
 
 export const TitleError = styled.h1`
   margin-top: 40px;
+`;
+
+export const InputSearch = styled.input`
+  margin: 5px 15px 10px 15px;
+  width: 92%;
+  background-color: #e6e6e6;
+  border: none;
+  border-radius: 20px;
+  height: 32px;
+  padding: 0px 20px;
+  font-size: 0.8rem;
 `;

@@ -1,26 +1,38 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
-import SwipeableRoutes from 'react-swipeable-routes';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+// import SwipeableRoutes from "react-swipeable-routes";
 
-import GlobalStyle from '../styles/global';
-import Header from './Header';
-import PokeList from './PokeList/pokeList';
+// import { ApolloProvider } from "@apollo/react-hooks";
+// import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import { ApolloClient } from "apollo-client";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { HttpLink } from "apollo-link-http";
 
-export const client = new ApolloClient({
-  uri: 'http://10.61.217.146:3333/'
+import GlobalStyle from "../styles/global";
+import Header from "./Header";
+import PokeList from "./PokeList/pokeList";
+
+// export const client = new ApolloClient({
+//   uri: "http://localhost:3333/"
+// });
+
+const cache = new InMemoryCache();
+const link = new HttpLink({
+  uri: "http://localhost:3333/"
+});
+const client = new ApolloClient({
+  cache,
+  link
 });
 
 const App = () => (
   <ApolloProvider client={client}>
     <Header />
     <Router>
-      {/* <NavTabs /> */}
-      <SwipeableRoutes>
-        <Route path="/" exact component={PokeList} />
-        {/* <Route path="/items/" component={ItemList} /> */}
-      </SwipeableRoutes>
+      <Route path="/" exact component={PokeList} />
+      {/* <SwipeableRoutes> */}
+      {/* </SwipeableRoutes> */}
     </Router>
     <GlobalStyle />
   </ApolloProvider>

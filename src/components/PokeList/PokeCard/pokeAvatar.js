@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 export const Container = styled.div`
   height: 88px;
@@ -27,10 +27,10 @@ export const Ball = styled.div`
   z-index: -1;
 `;
 
-export default function PokeAvatar({ avatar, color }) {
-  const pokeAvatar = avatar ? avatar : '';
+export default function PokeAvatar({ avatar }) {
+  const pokeAvatar = avatar ? avatar : "";
   return (
-    <Container color={color}>
+    <Container>
       {<img src={pokeAvatar} alt="Poke Avatar" />}
       <Ball />
     </Container>

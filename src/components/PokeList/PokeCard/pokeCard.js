@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import PokeAvatar from './pokeAvatar';
-import PokeInfo from './pokeInfo';
+import PokeAvatar from "./pokeAvatar";
+import PokeInfo from "./pokeInfo";
 
 export const Container = styled.div`
   height: 115px;
@@ -12,16 +12,17 @@ export const Container = styled.div`
   padding: 8px;
   margin-bottom: 10px;
   border-radius: 5px;
-  background-color: ${props => (props.color ? props.color : 'white')};
+  background-color: ${props => (props.color ? props.color : "white")};
   z-index: -2;
   right: -50px;
+  cursor: pointer;
 `;
 
 export default function PokeCard({ pokemon, id }) {
   return (
     <Container color={pokemon.color}>
       <PokeInfo pokemon={pokemon} id={id} />
-      <PokeAvatar avatar={pokemon.img} color={pokemon.color} />
+      <PokeAvatar avatar={pokemon.img} />
     </Container>
   );
 }
