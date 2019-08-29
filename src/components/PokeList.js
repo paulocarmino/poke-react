@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+import Header from './Header';
 import PokeCard from './PokeCard';
 import Loading from './Loading';
 
@@ -15,9 +16,7 @@ const PokeList = () => {
       const result = await axios('http://10.61.217.146:3333/pokemons');
       setInitialData({ pokemons: result.data });
       setData({ pokemons: result.data });
-      setTimeout(() => {
-        setLoading({ isLoading: false });
-      }, 1000);
+      setLoading({ isLoading: false });
     }
     fetchData();
   }, []);
@@ -35,6 +34,7 @@ const PokeList = () => {
   if (loading.isLoading) {
     return (
       <>
+        <Header />
         <InputSearch
           type="text"
           placeholder="Search pokemons by name..."
@@ -47,6 +47,7 @@ const PokeList = () => {
 
   return (
     <>
+      <Header />
       <InputSearch
         type="text"
         placeholder="Search pokemons by name..."

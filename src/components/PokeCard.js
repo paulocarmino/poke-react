@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 
 import PokeAvatar from './PokeAvatar';
 import PokeInfo from './PokeInfo';
@@ -18,18 +19,22 @@ export const Container = styled.div`
   cursor: pointer;
 `;
 
-export default function PokeCard({ pokemon, id }) {
-  const goToPokemonDetails = name => {
-    console.log('Clicked Pokemon: ' + name);
+const PokeCard = withRouter(({ pokemon, id, history }) => {
+  const goToPokemonDetails = id => {
+    // console.log(history);
+    history.push('pokemon/' + pokemon._id);
+    console.log('Clicked Pokemon: ' + id);
   };
 
   return (
     <Container
       color={pokemon.color}
-      onClick={() => goToPokemonDetails(pokemon.name)}
+      onClick={() => goToPokemonDetails(pokemon._id)}
     >
       <PokeInfo pokemon={pokemon} id={id} />
       <PokeAvatar avatar={pokemon.img} />
     </Container>
   );
-}
+});
+
+export default PokeCard;

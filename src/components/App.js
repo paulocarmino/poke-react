@@ -10,8 +10,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 
 import GlobalStyle from '../styles/global';
-import Header from './Header';
 import PokeList from './PokeList';
+import PokeDetails from './PokeDetails';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -24,9 +24,9 @@ const client = new ApolloClient({
 
 const App = () => (
   <ApolloProvider client={client}>
-    <Header />
     <Router>
       <Route path="/" exact component={PokeList} />
+      <Route path="/pokemon/:id" component={PokeDetails} />
       {/* <SwipeableRoutes> */}
       {/* </SwipeableRoutes> */}
     </Router>
