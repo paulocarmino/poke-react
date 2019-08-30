@@ -13,7 +13,7 @@ const PokeList = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await axios('http://10.61.217.146:3333/pokemons');
+      const result = await axios('http://localhost:3333/pokemons');
       setInitialData({ pokemons: result.data });
       setData({ pokemons: result.data });
       setLoading({ isLoading: false });

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+import axios from "axios";
 
 const PokeDetails = withRouter(({ match, history }) => {
   const [data, setData] = useState({ pokemon: {} });
@@ -10,18 +10,20 @@ const PokeDetails = withRouter(({ match, history }) => {
   useEffect(() => {
     async function fetchData() {
       const result = await axios(
-        'http://10.61.217.146:3333/pokemon/' + match.params.id
+        "http://10.61.217.146:3333/pokemon/" + match.params.id
       );
+
       setData({ pokemon: result.data });
       setTimeout(() => {
         setLoading({ isLoading: false });
       }, 1000);
     }
+
     fetchData();
-  }, []);
+  }, [match.params.id]);
 
   const goBackToList = () => {
-    history.push('/');
+    history.push("/");
   };
 
   return (
