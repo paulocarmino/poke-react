@@ -5,7 +5,7 @@ import axios from "axios";
 
 const PokeDetails = withRouter(({ match, history }) => {
   const [data, setData] = useState({ pokemon: {} });
-  const [loading, setLoading] = useState({ isLoading: true });
+  // const [loading, setLoading] = useState({ isLoading: true });
 
   useEffect(() => {
     async function fetchData() {
@@ -15,10 +15,9 @@ const PokeDetails = withRouter(({ match, history }) => {
 
       setData({ pokemon: result.data });
       setTimeout(() => {
-        setLoading({ isLoading: false });
+        // setLoading({ isLoading: false });
       }, 1000);
     }
-
     fetchData();
   }, [match.params.id]);
 
