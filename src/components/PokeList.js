@@ -39,7 +39,6 @@ const GET_ALL_POKEMONS = gql`
 
 const PokeList = () => {
   const { loading, error, data, fetchMore } = useQuery(GET_ALL_POKEMONS);
-  // const pokemons = data.pokemons;
 
   const filterList = e => {
     const nameFilter = string.capitalize(e.target.value);
