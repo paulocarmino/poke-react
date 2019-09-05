@@ -61,7 +61,7 @@ export const Label = styled.label`
       case "Poison":
         return "#410084";
       case "Fire":
-        return "#e35800";
+        return "#ff8504";
       case "Flying":
         return "#6e7ce3";
       case "Water":
