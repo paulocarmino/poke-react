@@ -5,7 +5,7 @@ export default function PokeInfo({ pokemon }) {
   return (
     <Container>
       <PokeBasicInfo>
-        <span>#{pokemon.number}</span>
+        <span>{pokemon.number}</span>
         <h3>{pokemon.name}</h3>
       </PokeBasicInfo>
       <TypesList>

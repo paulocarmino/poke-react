@@ -13,11 +13,11 @@ export const Container = styled.div`
   padding: 8px;
   margin-bottom: 10px;
   border-radius: 5px;
-  background-color: ${props => (props.color ? props.color : "white")};
+  background-color: ${props =>
+    props.color === "rgb(240, 240, 240)" ? "rgb(10, 220, 240)" : props.color};
   z-index: 1;
   right: -50px;
   cursor: pointer;
-  filter: saturate(1.1);
 `;
 
 const PokeCard = withRouter(({ pokemon, id, history }) => {

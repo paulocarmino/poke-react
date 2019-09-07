@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
+import { ArrowBack } from "styled-icons/material/ArrowBack";
 
 const GET_POKEMON = gql`
   query Pokemons($id: ID) {
@@ -50,8 +51,12 @@ const PokeDetails = withRouter(({ match, history }) => {
     <Container color={data.pokemon.color}>
       <Header>
         <LeftSide>
+          <NavContainer>
+            <ArrowBackWhite onClick={goBackToList} size="26" title="Back" />
+            {/* <img src={Left} alt="Left" height="26px" /> */}
+          </NavContainer>
           <HeaderPokerInfo>
-            <p className="number">#{data.pokemon.number}</p>
+            <p className="number">{data.pokemon.number}</p>
             <p className="name">{data.pokemon.name}</p>
             <p className="specie">{data.pokemon.specie}</p>
             <TypesList>
@@ -62,6 +67,7 @@ const PokeDetails = withRouter(({ match, history }) => {
                   </Label>
                 ))}
             </TypesList>
+            <Ball />
           </HeaderPokerInfo>
         </LeftSide>
         <RightSide>
@@ -88,37 +94,52 @@ export default PokeDetails;
 export const Container = styled.div`
   min-height: 100vh;
   background-color: ${props => (props.color ? props.color : "white")};
-  filter: saturate(1.2);
 `;
 
 export const Header = styled.div`
   display: flex;
-  height: 220px;
+  height: 240px;
   padding-top: 30px;
   padding-bottom: 20px;
 `;
 
+export const NavContainer = styled.div`
+  padding-left: 30px;
+  z-index: 2;
+`;
+
+export const ArrowBackWhite = styled(ArrowBack)`
+  color: #fff;
+  cursor: pointer;
+`;
+
 export const LeftSide = styled.div`
-  /* border: 1px solid #000; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 50px;
   flex: 1;
 `;
 
 export const RightSide = styled.div`
   display: flex;
-  /* border: 1px solid #000; */
   flex: 1;
   align-items: flex-end;
   justify-content: flex-end;
-  padding-right: 30px;
+  padding-right: 10px;
 
   img {
-    height: 120px;
+    height: 146px;
+    width: 100%;
+    filter: saturate(1.6);
   }
 `;
 
 export const HeaderPokerInfo = styled.div`
-  padding: 0px 30px;
+  padding-left: 30px;
   color: #fff;
+  position: relative;
+  z-index: 1;
 
   .number {
     font-size: 15px;
@@ -136,9 +157,21 @@ export const HeaderPokerInfo = styled.div`
   }
 `;
 
+export const Ball = styled.div`
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  top: -90px;
+  left: -110px;
+
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  z-index: -2;
+`;
+
 export const TypesList = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 5px;
 `;
 
@@ -178,12 +211,16 @@ export const Label = styled.label`
         return "#c9c9c9";
     }
   }};
+
+  & + label {
+    margin-left: 6px;
+  }
 `;
 
 export const PokeInfoDetails = styled.div`
   width: 100%;
-  height: 600px;
-  margin-top: -50px;
+  height: calc(100vh - 200px);
+  margin-top: -40px;
   padding-top: 40px;
   background-color: #fff;
   border-top-left-radius: 35px;
@@ -198,12 +235,11 @@ export const TabsContainer = styled.ul`
 `;
 
 export const Tabs = styled.li`
-  /* display: flex; */
-  /* height: 40px; */
-  /* width: 100%; */
-  border-bottom: ${props => (props.active ? "2px solid" + props.color : "")};
-  padding: 15px 0px;
-  text-align: center;
   flex: 1;
+  padding: 15px 0px;
+  border-bottom: ${props => (props.active ? "2px solid" : "")};
+  border-color: ${props => props.color};
   font-weight: ${props => (props.active ? "600" : "")};
+  text-align: center;
+  cursor: pointer;
 `;
