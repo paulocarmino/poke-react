@@ -85,6 +85,10 @@ const PokeDetails = withRouter(({ pokemonId }) => {
           <Tabs>Stat</Tabs>
           <Tabs>Evolution</Tabs>
         </TabsContainer>
+        <PokeInfoData>
+          <h3>Description</h3>
+          {data.pokemon.description}
+        </PokeInfoData>
       </PokeInfoDetails>
     </Container>
   );
@@ -244,4 +248,13 @@ export const Tabs = styled.li`
   font-weight: ${props => (props.active ? "600" : "")};
   text-align: center;
   cursor: pointer;
+`;
+
+export const PokeInfoData = styled.div`
+  margin-top: 20px;
+  padding: 0px 30px;
+
+  h3 {
+    margin-bottom: 5px;
+  }
 `;
