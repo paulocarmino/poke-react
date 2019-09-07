@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import debounce from "lodash/debounce";
 import string from "lodash/string";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 
 import Header from "./Header";
 import PokeCard from "./PokeCard";
 import Loading from "./Loading";
 import Error from "../assets/error.svg";
+import { ModalContext } from "../contexts/ModalContext";
+import PokeDetails from "./PokeDetails";
 
 const GET_ALL_POKEMONS = gql`
   query Pokemons($name: String) {
@@ -39,6 +42,7 @@ const GET_ALL_POKEMONS = gql`
 
 const PokeList = () => {
   const { loading, error, data, fetchMore } = useQuery(GET_ALL_POKEMONS);
+  const [state, setState] = useContext(ModalContext);
 
   const filterList = e => {
     const nameFilter = string.capitalize(e.target.value);
@@ -63,6 +67,10 @@ const PokeList = () => {
       }
     });
   }, 250);
+
+  const toggleDrawer = () => {
+    setState(state => ({ ...state, open: false }));
+  };
 
   if (loading)
     return (
@@ -106,6 +114,17 @@ const PokeList = () => {
           <PokeCard key={pokemon._id} pokemon={pokemon} id={i} />
         ))}
       </Container>
+      <SwipeableDrawer
+        disableBackdropTransition
+        anchor="bottom"
+        open={state.open}
+        onOpen={toggleDrawer}
+        onClose={toggleDrawer}
+      >
+        <DrawerContainer>
+          <PokeDetails pokemonId={state.activePokemon._id} />
+        </DrawerContainer>
+      </SwipeableDrawer>
     </>
   );
 };
@@ -141,4 +160,8 @@ export const InputSearch = styled.input`
   height: 32px;
   padding: 0px 20px;
   font-size: 0.8rem;
+`;
+
+export const DrawerContainer = styled.div`
+  max-width: 400px;
 `;

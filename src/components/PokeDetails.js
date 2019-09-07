@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { ArrowBack } from "styled-icons/material/ArrowBack";
+
+import { ModalContext } from "../contexts/ModalContext";
 
 const GET_POKEMON = gql`
   query Pokemons($id: ID) {
@@ -32,15 +34,17 @@ const GET_POKEMON = gql`
   }
 `;
 
-const PokeDetails = withRouter(({ match, history }) => {
+const PokeDetails = withRouter(({ pokemonId }) => {
   const { loading, error, data } = useQuery(GET_POKEMON, {
     variables: {
-      id: match.params.id
+      id: pokemonId
     }
   });
 
-  const goBackToList = () => {
-    history.push("/");
+  const [state, setState] = useContext(ModalContext);
+
+  const toggleDrawer = () => {
+    setState(state => ({ ...state, open: false }));
   };
 
   if (loading) return <div>Loading</div>;
@@ -52,8 +56,7 @@ const PokeDetails = withRouter(({ match, history }) => {
       <Header>
         <LeftSide>
           <NavContainer>
-            <ArrowBackWhite onClick={goBackToList} size="26" title="Back" />
-            {/* <img src={Left} alt="Left" height="26px" /> */}
+            <ArrowBackWhite onClick={toggleDrawer} size="26" title="Back" />
           </NavContainer>
           <HeaderPokerInfo>
             <p className="number">{data.pokemon.number}</p>
@@ -73,8 +76,6 @@ const PokeDetails = withRouter(({ match, history }) => {
         <RightSide>
           <img src={data.pokemon.img} alt={data.pokemon.name}></img>
         </RightSide>
-        {/* <button onClick={() => goBackToList()}>Voltar</button> */}
-        {/* {data.pokemon.name},{data.pokemon.img},{data.pokemon.specie} */}
       </Header>
       <PokeInfoDetails>
         <TabsContainer>
@@ -126,11 +127,12 @@ export const RightSide = styled.div`
   flex: 1;
   align-items: flex-end;
   justify-content: flex-end;
-  padding-right: 10px;
+  padding-right: 20px;
 
   img {
-    height: 146px;
-    width: 100%;
+    height: 160px;
+    width: 170px;
+    /* width: 100%; */
     filter: saturate(1.6);
   }
 `;

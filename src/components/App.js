@@ -4,6 +4,8 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
+import { ModalProvider } from "../contexts/ModalContext";
+
 import GlobalStyle from "../styles/global";
 import PokeList from "./PokeList";
 import PokeDetails from "./PokeDetails";
@@ -16,10 +18,12 @@ const client = new ApolloClient({
 
 const App = () => (
   <ApolloProvider client={client}>
-    <Router>
-      <Route path="/" exact component={PokeList} />
-      <Route path="/pokemon/:id" component={PokeDetails} />
-    </Router>
+    <ModalProvider>
+      <Router>
+        <Route path="/" exact component={PokeList} />
+        <Route path="/pokemon/:id" component={PokeDetails} />
+      </Router>
+    </ModalProvider>
     <GlobalStyle />
   </ApolloProvider>
 );
