@@ -3,23 +3,40 @@ import styled from "styled-components";
 
 import Logo from "../assets/logo.svg";
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-top: 30px;
-
-  h1 {
-    text-align: center;
-    padding: 0px 38px;
-    margin: 15px 0px;
-  }
-`;
-
 export default function Header() {
   return (
     <Container>
+      <h1>Pokedex</h1>
       <img src={Logo} alt="Logo"></img>
-      <h1>What Pokemon are you looking for?</h1>
+      <span>About this project</span>
     </Container>
   );
 }
+
+export const Container = styled.div`
+  height: 60px;
+  padding: 0px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(229, 57, 53);
+  background: linear-gradient(
+    180deg,
+    rgba(229, 57, 53, 1) 0%,
+    rgba(227, 89, 87, 1) 100%
+  );
+  color: #fff;
+
+  h1 {
+    font-size: 24px;
+  }
+
+  span {
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    &:hover {
+      font-size: 13px;
+    }
+  }
+`;

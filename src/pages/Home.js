@@ -1,54 +1,30 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import media from "styled-media-query";
-import { useQuery } from "@apollo/react-hooks";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 
-import GET_ALL_POKEMONS from "../graphql/GetAllPokemons";
 import { GlobalContext } from "../contexts/GlobalContext";
+import Header from "../components/Header";
 import ListPokemons from "../components/ListPokemons";
 import SearchBar from "../components/Shared/SearchBar";
-import Loading from "../components/Shared/Loading";
-import Error from "../components/Shared/Error";
 
 import Details from "../pages/Details";
 
 const Home = () => {
-  const { loading, error, data, fetchMore } = useQuery(GET_ALL_POKEMONS);
   const [state, setState] = useContext(GlobalContext);
-
-  fetchMore({
-    variables: {
-      name: state.searchTerm
-    },
-    updateQuery: (prev, { fetchMoreResult, ...rest }) => {
-      if (!fetchMoreResult) return prev;
-      if (!prev) return;
-      return {
-        ...fetchMoreResult,
-        pokemonsList: {
-          ...fetchMoreResult.pokemons,
-          pokemonsList: [...prev.pokemons, ...fetchMoreResult.pokemons]
-        }
-      };
-    }
-  });
 
   const togglePokemonDetails = () => {
     setState(state => ({ ...state, detailsIsOpen: false }));
   };
 
-  if (loading) return <Loading />;
-
-  if (error) return <Error />;
-
   return (
     <>
+      <Header />
       <HomeContainer>
-        {/* <Header/> */}
         <HomeContent>
+          <h2>Welcome, stranger...</h2>
           <SearchBar />
-          {data && <ListPokemons pokemons={data.pokemons} />}
+          <ListPokemons />
         </HomeContent>
       </HomeContainer>
 

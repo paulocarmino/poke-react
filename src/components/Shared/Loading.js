@@ -14,24 +14,9 @@ const PokeCardLoader = () => (
   </ContentLoader>
 );
 
-const SearchBarLoader = () => (
-  <ContentLoader
-    height={32}
-    width={345}
-    speed={0.5}
-    primaryColor="#f0f0f0"
-    secondaryColor="#d0d0d0"
-  >
-    <rect x="0" y="0" rx="15" ry="15" width="345" height="32" />
-  </ContentLoader>
-);
-
 export default function Loading() {
   return (
     <>
-      <SearchBarContainerLoader>
-        <SearchBarLoader />
-      </SearchBarContainerLoader>
       <PokeListContainerLoader>
         <PokeCardLoader />
         <PokeCardLoader />
@@ -51,10 +36,6 @@ export default function Loading() {
 export const PokeListContainerLoader = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 20px 15px;
+  margin: 10px 0px;
   grid-gap: 10px;
-`;
-
-export const SearchBarContainerLoader = styled.div`
-  margin: 20px 15px;
 `;
