@@ -7,7 +7,7 @@ import { NavigateBefore } from "styled-icons/material/NavigateBefore";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
 import { KeyboardArrowDown } from "styled-icons/material/KeyboardArrowDown";
 
-import { ModalContext } from "../contexts/ModalContext";
+import { GlobalContext } from "../contexts/GlobalContext";
 
 const GET_POKEMON = gql`
   query Pokemons($id: ID) {
@@ -44,12 +44,12 @@ const PokeDetails = ({ pokemonId }) => {
   });
 
   // eslint-disable-next-line
-  const [state, setState] = useContext(ModalContext);
+  const [state, setState] = useContext(GlobalContext);
 
   const toggleDrawer = () => {
     setState(state => ({
       ...state,
-      open: false
+      detailsIsOpen: false
     }));
   };
 

@@ -4,11 +4,11 @@ import styled from "styled-components";
 import PokeAvatar from "./PokeAvatar";
 import PokeInfo from "./PokeInfo";
 
-import { ModalContext } from "../contexts/ModalContext";
+import { GlobalContext } from "../contexts/GlobalContext";
 
 const PokeCard = ({ pokemon, id, history }) => {
   // eslint-disable-next-line
-  const [state, setState] = useContext(ModalContext);
+  const [state, setState] = useContext(GlobalContext);
 
   return (
     <>
@@ -17,7 +17,7 @@ const PokeCard = ({ pokemon, id, history }) => {
         onClick={() =>
           setState(state => ({
             ...state,
-            open: true,
+            detailsIsOpen: true,
             activePokemon: pokemon
           }))
         }
