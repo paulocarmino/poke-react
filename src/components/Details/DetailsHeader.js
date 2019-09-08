@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { GlobalContext } from "../../contexts/GlobalContext";
+import Types from "../Shared/Types/Types";
 
 const DetailsHeader = () => {
   // eslint-disable-next-line
@@ -14,14 +15,7 @@ const DetailsHeader = () => {
           <p className="number">{state.activePokemon.number}</p>
           <p className="name">{state.activePokemon.name}</p>
           <p className="specie">{state.activePokemon.specie}</p>
-          <TypesList>
-            {state.activePokemon &&
-              state.activePokemon.types.map((type, i) => (
-                <Label key={i} type={type}>
-                  {type}
-                </Label>
-              ))}
-          </TypesList>
+          <Types types={state.activePokemon.types} />
         </HeaderPokerInfo>
       </LeftSide>
       <RightSide>
