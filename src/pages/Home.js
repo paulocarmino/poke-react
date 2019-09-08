@@ -8,9 +8,10 @@ import GET_ALL_POKEMONS from "../graphql/GetAllPokemons";
 import { GlobalContext } from "../contexts/GlobalContext";
 import ListPokemons from "../components/ListPokemons";
 import SearchBar from "../components/Shared/SearchBar";
-import PokemonDetails from "../components/PokemonDetails";
 import Loading from "../components/Shared/Loading";
 import Error from "../components/Shared/Error";
+
+import Details from "../pages/Details";
 
 const Home = () => {
   const { loading, error, data, fetchMore } = useQuery(GET_ALL_POKEMONS);
@@ -59,7 +60,7 @@ const Home = () => {
         onClose={togglePokemonDetails}
       >
         <DrawerContainer>
-          <PokemonDetails pokemonId={state.activePokemon._id} />
+          <Details pokemon={state.activePokemon} />
         </DrawerContainer>
       </SwipeableDrawer>
     </>
