@@ -36,7 +36,7 @@ const GET_POKEMON = gql`
   }
 `;
 
-const PokeDetails = ({ pokemonId }) => {
+const PokemonDetails = ({ pokemonId }) => {
   const { loading, error, data } = useQuery(GET_POKEMON, {
     variables: {
       id: pokemonId
@@ -117,7 +117,7 @@ const PokeDetails = ({ pokemonId }) => {
   );
 };
 
-export default PokeDetails;
+export default PokemonDetails;
 
 export const Container = styled.div`
   min-height: 100vh;

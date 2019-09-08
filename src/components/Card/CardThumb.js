@@ -28,7 +28,7 @@ export const Ball = styled.div`
   z-index: -1;
 `;
 
-export default function PokeAvatar({ avatar }) {
+export default function CardThumb({ avatar }) {
   const pokeAvatar = avatar ? avatar : "";
   return (
     <Container>

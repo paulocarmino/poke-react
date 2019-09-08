@@ -7,10 +7,10 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import GET_ALL_POKEMONS from "../graphql/GetAllPokemons";
 import { GlobalContext } from "../contexts/GlobalContext";
 import ListPokemons from "../components/ListPokemons";
-import SearchBar from "../components/SearchBar";
-import PokeDetails from "../components/PokeDetails";
-import Loading from "../components/Loading";
-import Error from "../components/Error";
+import SearchBar from "../components/Shared/SearchBar";
+import PokemonDetails from "../components/PokemonDetails";
+import Loading from "../components/Shared/Loading";
+import Error from "../components/Shared/Error";
 
 const Home = () => {
   const { loading, error, data, fetchMore } = useQuery(GET_ALL_POKEMONS);
@@ -59,7 +59,7 @@ const Home = () => {
         onClose={togglePokemonDetails}
       >
         <DrawerContainer>
-          <PokeDetails pokemonId={state.activePokemon._id} />
+          <PokemonDetails pokemonId={state.activePokemon._id} />
         </DrawerContainer>
       </SwipeableDrawer>
     </>

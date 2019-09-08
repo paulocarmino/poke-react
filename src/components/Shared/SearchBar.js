@@ -3,7 +3,7 @@ import styled from "styled-components";
 import debounce from "lodash/debounce";
 import string from "lodash/string";
 
-import { GlobalContext } from "../contexts/GlobalContext";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 const SearchBar = () => {
   // eslint-disable-next-line

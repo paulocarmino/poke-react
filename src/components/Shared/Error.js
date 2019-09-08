@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import ErrorImage from "../assets/error.svg";
+import ErrorImage from "../../assets/error.svg";
 
 const Error = () => {
   return (

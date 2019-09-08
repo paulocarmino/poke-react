@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import PokeCard from "./PokeCard";
+import Card from "./Card/Card";
 
 const ListPokemons = ({ pokemons }) => {
   return (
     <ListPokemonsContainer>
       {pokemons.map((pokemon, i) => (
-        <PokeCard key={pokemon._id} pokemon={pokemon} id={i} />
+        <Card key={pokemon._id} pokemon={pokemon} id={i} />
       ))}
     </ListPokemonsContainer>
   );

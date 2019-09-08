@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function PokeInfo({ pokemon }) {
+export default function CardInfo({ pokemon }) {
   return (
     <Container>
       <PokeBasicInfo>

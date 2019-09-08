@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import PokeAvatar from "./PokeAvatar";
-import PokeInfo from "./PokeInfo";
+import CardThumb from "./CardThumb";
+import CardInfo from "./CardInfo";
 
-import { GlobalContext } from "../contexts/GlobalContext";
+import { GlobalContext } from "../../contexts/GlobalContext";
 
-const PokeCard = ({ pokemon, id, history }) => {
+const Card = ({ pokemon, id, history }) => {
   // eslint-disable-next-line
   const [state, setState] = useContext(GlobalContext);
 
@@ -22,14 +22,14 @@ const PokeCard = ({ pokemon, id, history }) => {
           }))
         }
       >
-        <PokeInfo pokemon={pokemon} id={id} />
-        <PokeAvatar avatar={pokemon.img} />
+        <CardInfo pokemon={pokemon} id={id} />
+        <CardThumb avatar={pokemon.img} />
       </Container>
     </>
   );
 };
 
-export default PokeCard;
+export default Card;
 
 export const Container = styled.div`
   height: 115px;
