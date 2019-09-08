@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import media from "styled-media-query";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import debounce from "lodash/debounce";
 import string from "lodash/string";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 
-import Header from "./Header";
 import PokeCard from "./PokeCard";
 import Loading from "./Loading";
 import Error from "../assets/error.svg";
@@ -15,7 +15,7 @@ import PokeDetails from "./PokeDetails";
 
 const GET_ALL_POKEMONS = gql`
   query Pokemons($name: String) {
-    pokemons(where: { name_contains: $name }) {
+    pokemons(where: { name_contains: $name }, orderBy: number_ASC) {
       _id
       number
       name
@@ -72,38 +72,18 @@ const PokeList = () => {
     setState(state => ({ ...state, open: false }));
   };
 
-  if (loading)
-    return (
-      <>
-        <Header />
-        <InputSearch
-          type="text"
-          placeholder="Search pokemons by name..."
-          disabled
-        />
-        <Loading />
-      </>
-    );
+  if (loading) return <Loading />;
 
   if (error)
     return (
-      <>
-        <Header />
-        <InputSearch
-          type="text"
-          placeholder="Search pokemons by name..."
-          disabled
-        />
-        <ContainerError>
-          <img src={Error} alt="Erro" width="300px" />
-          <TitleError className="marginup">Error :(</TitleError>
-        </ContainerError>
-      </>
+      <ContainerError>
+        <img src={Error} alt="Erro" width="300px" />
+        <TitleError className="marginup">Error :(</TitleError>
+      </ContainerError>
     );
 
   return (
     <>
-      <Header />
       <InputSearch
         type="text"
         placeholder="Search pokemons by name..."
@@ -114,7 +94,7 @@ const PokeList = () => {
           <PokeCard key={pokemon._id} pokemon={pokemon} id={i} />
         ))}
       </Container>
-      <SwipeableDrawer
+      <SwipeableDrawerCustom
         disableBackdropTransition
         anchor="bottom"
         open={state.open}
@@ -124,7 +104,7 @@ const PokeList = () => {
         <DrawerContainer>
           <PokeDetails pokemonId={state.activePokemon._id} />
         </DrawerContainer>
-      </SwipeableDrawer>
+      </SwipeableDrawerCustom>
     </>
   );
 };
@@ -132,7 +112,6 @@ const PokeList = () => {
 export default PokeList;
 
 export const Container = styled.div`
-  // height: calc(100% - 90px);
   overflow: hidden;
   margin: 15px 15px;
   display: grid;
@@ -162,6 +141,13 @@ export const InputSearch = styled.input`
   font-size: 0.8rem;
 `;
 
+export const SwipeableDrawerCustom = styled(SwipeableDrawer)`
+  max-width: 395px;
+`;
+
 export const DrawerContainer = styled.div`
-  max-width: 400px;
+  width: 100%;
+  ${media.greaterThan("medium")`
+    max-width: 395px;
+  `}
 `;

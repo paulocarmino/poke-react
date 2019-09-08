@@ -1,19 +1,13 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
 
 import PokeAvatar from "./PokeAvatar";
 import PokeInfo from "./PokeInfo";
 
 import { ModalContext } from "../contexts/ModalContext";
 
-const PokeCard = withRouter(({ pokemon, id, history }) => {
-  // const goToPokemonDetails = id => {
-  //   // console.log(history);
-  //   history.push("pokemon/" + pokemon._id);
-  //   console.log("Clicked Pokemon: " + id);
-  // };
-
+const PokeCard = ({ pokemon, id, history }) => {
+  // eslint-disable-next-line
   const [state, setState] = useContext(ModalContext);
 
   return (
@@ -33,7 +27,7 @@ const PokeCard = withRouter(({ pokemon, id, history }) => {
       </Container>
     </>
   );
-});
+};
 
 export default PokeCard;
 

@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import { withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { ArrowBack } from "styled-icons/material/ArrowBack";
+import IconButton from "@material-ui/core/IconButton";
+import { NavigateBefore } from "styled-icons/material/NavigateBefore";
+import { NavigateNext } from "styled-icons/material/NavigateNext";
+import { KeyboardArrowDown } from "styled-icons/material/KeyboardArrowDown";
 
 import { ModalContext } from "../contexts/ModalContext";
 
@@ -34,17 +36,21 @@ const GET_POKEMON = gql`
   }
 `;
 
-const PokeDetails = withRouter(({ pokemonId }) => {
+const PokeDetails = ({ pokemonId }) => {
   const { loading, error, data } = useQuery(GET_POKEMON, {
     variables: {
       id: pokemonId
     }
   });
 
+  // eslint-disable-next-line
   const [state, setState] = useContext(ModalContext);
 
   const toggleDrawer = () => {
-    setState(state => ({ ...state, open: false }));
+    setState(state => ({
+      ...state,
+      open: false
+    }));
   };
 
   if (loading) return <div>Loading</div>;
@@ -53,11 +59,29 @@ const PokeDetails = withRouter(({ pokemonId }) => {
 
   return (
     <Container color={data.pokemon.color}>
+      <NavContainer>
+        <IconButtonCustom onClick={toggleDrawer}>
+          <ArrowDownWhite size="30" title="Back" />
+        </IconButtonCustom>
+        <NavigationContainer>
+          <IconButtonCustom>
+            <ArrowBeforeWhite
+              size="30"
+              title="Previous Pokemon"
+              number={data.pokemon.number}
+            />
+          </IconButtonCustom>
+          <IconButtonCustom>
+            <ArrowNextWhite
+              size="30"
+              title="Next Pokemon"
+              number={data.pokemon.number}
+            />
+          </IconButtonCustom>
+        </NavigationContainer>
+      </NavContainer>
       <Header>
         <LeftSide>
-          <NavContainer>
-            <ArrowBackWhite onClick={toggleDrawer} size="26" title="Back" />
-          </NavContainer>
           <HeaderPokerInfo>
             <p className="number">{data.pokemon.number}</p>
             <p className="name">{data.pokemon.name}</p>
@@ -70,7 +94,6 @@ const PokeDetails = withRouter(({ pokemonId }) => {
                   </Label>
                 ))}
             </TypesList>
-            <Ball />
           </HeaderPokerInfo>
         </LeftSide>
         <RightSide>
@@ -86,13 +109,13 @@ const PokeDetails = withRouter(({ pokemonId }) => {
           <Tabs>Evolution</Tabs>
         </TabsContainer>
         <PokeInfoData>
-          <h3>Description</h3>
+          <h4>Description</h4>
           {data.pokemon.description}
         </PokeInfoData>
       </PokeInfoDetails>
     </Container>
   );
-});
+};
 
 export default PokeDetails;
 
@@ -103,18 +126,43 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   display: flex;
-  height: 240px;
-  padding-top: 30px;
+  height: 186px;
+  padding-top: 24px;
   padding-bottom: 20px;
 `;
 
 export const NavContainer = styled.div`
-  padding-left: 30px;
-  z-index: 2;
+  padding-left: 20px;
+  padding-top: 16px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: space-between;
 `;
 
-export const ArrowBackWhite = styled(ArrowBack)`
+export const NavigationContainer = styled.div`
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const IconButtonCustom = styled(IconButton)`
+  &.MuiButtonBase-root {
+    padding: 4px;
+  }
+`;
+
+export const ArrowDownWhite = styled(KeyboardArrowDown)`
   color: #fff;
+  cursor: pointer;
+`;
+
+export const ArrowBeforeWhite = styled(NavigateBefore)`
+  color: ${props => (props.number !== "#001" ? "#fff" : "#ffffff3b")};
+  cursor: pointer;
+`;
+
+export const ArrowNextWhite = styled(NavigateNext)`
+  color: ${props => (props.number !== "#100" ? "#fff" : "#ffffff3b")};
   cursor: pointer;
 `;
 
@@ -132,11 +180,11 @@ export const RightSide = styled.div`
   align-items: flex-end;
   justify-content: flex-end;
   padding-right: 20px;
+  z-index: 1;
 
   img {
     height: 160px;
     width: 170px;
-    /* width: 100%; */
     filter: saturate(1.6);
   }
 `;
@@ -165,14 +213,14 @@ export const HeaderPokerInfo = styled.div`
 
 export const Ball = styled.div`
   position: absolute;
-  height: 300px;
-  width: 300px;
-  top: -90px;
-  left: -110px;
-
-  background-color: rgba(255, 255, 255, 0.15);
+  height: 500px;
+  width: 550px;
+  top: 0px;
+  left: -88px;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  z-index: -2;
+  z-index: -1;
+  overflow: auto;
 `;
 
 export const TypesList = styled.div`
@@ -185,7 +233,7 @@ export const Label = styled.label`
   width: 66px;
   margin-bottom: 4px;
   padding: 4px 6px;
-  border-radius: 25px;
+  border-radius: 6px;
   text-align: center;
   font-size: 0.8rem;
   color: #fff;
@@ -254,7 +302,8 @@ export const PokeInfoData = styled.div`
   margin-top: 20px;
   padding: 0px 30px;
 
-  h3 {
+  h4 {
     margin-bottom: 5px;
+    color: #333;
   }
 `;

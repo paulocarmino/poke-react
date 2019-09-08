@@ -50,7 +50,7 @@ export const Label = styled.label`
   width: 52px;
   margin-bottom: 4px;
   padding: 2px 6px;
-  border-radius: 25px;
+  border-radius: 5px;
   text-align: center;
   font-size: 0.65rem;
   color: #fff;

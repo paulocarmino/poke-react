@@ -8,11 +8,11 @@ export const Container = styled.div`
 
   img {
     position: absolute;
-    right: -5px;
-    bottom: -5px;
+    right: -4px;
+    bottom: -13px;
     height: 100%;
     width: 100%;
-    filter: saturate(1.6);
+    filter: saturate(1.8);
   }
 `;
 
