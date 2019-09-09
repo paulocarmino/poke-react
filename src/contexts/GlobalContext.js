@@ -5,6 +5,7 @@ const GlobalContext = React.createContext([{}, () => {}]);
 const GlobalProvider = props => {
   const [state, setState] = useState({
     searchTerm: "",
+    aboutIsOpen: false,
     detailsIsOpen: false,
     activePokemon: {}
     // detailsIsOpen: true,

@@ -10,6 +10,7 @@ import Error from "../components/Shared/Error";
 
 const ListPokemons = () => {
   const { loading, error, data, fetchMore } = useQuery(GET_ALL_POKEMONS);
+  // eslint-disable-next-line
   const [state, setState] = useContext(GlobalContext);
 
   fetchMore({

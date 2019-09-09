@@ -17,13 +17,17 @@ const Home = () => {
     setState(state => ({ ...state, detailsIsOpen: false }));
   };
 
+  const toggleAbout = () => {
+    setState(state => ({ ...state, aboutIsOpen: false }));
+  };
+
   return (
     <>
       <Header />
       <HomeContainer>
         <HomeContent>
+          {/* <SearchBar /> */}
           <h2>Welcome, stranger...</h2>
-          <SearchBar />
           <ListPokemons />
         </HomeContent>
       </HomeContainer>
@@ -39,6 +43,19 @@ const Home = () => {
           <Details pokemon={state.activePokemon} />
         </DrawerContainer>
       </SwipeableDrawer>
+
+      <SwipeableDrawer
+        disableBackdropTransition
+        anchor="top"
+        open={state.aboutIsOpen}
+        onOpen={toggleAbout}
+        onClose={toggleAbout}
+      >
+        <DrawerContainer>
+          <h1>About this Project</h1>
+          <p>Soon!</p>
+        </DrawerContainer>
+      </SwipeableDrawer>
     </>
   );
 };
@@ -46,9 +63,14 @@ const Home = () => {
 export default Home;
 
 export const HomeContainer = styled.div`
-  margin: 15px 15px;
+  margin: 0px 15px;
+  margin-top: 80px;
 `;
-export const HomeContent = styled.div``;
+export const HomeContent = styled.div`
+  h2 {
+    margin-bottom: 20px;
+  }
+`;
 
 export const DrawerContainer = styled.div`
   width: 100%;
