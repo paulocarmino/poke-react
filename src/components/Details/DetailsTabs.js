@@ -5,6 +5,9 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 import { GlobalContext } from "../../contexts/GlobalContext";
+import AboutTab from "./AboutTab";
+import StatsTab from "./StatsTab";
+import EvolutionTab from "./EvolutionTab";
 
 const DetailsTabs = () => {
   const [value, setValue] = React.useState(0);
@@ -26,21 +29,21 @@ const DetailsTabs = () => {
         variant="fullWidth"
         color={state.activePokemon.color}
       >
-        <TabCustom label="About" />
         <TabCustom label="Stats" />
+        <TabCustom label="Details" />
         <TabCustom label="Evolution" />
       </TabsContainer>
       <TabsContentContainer>
         <SwipeableViews index={value} onChangeIndex={handleChangeIndex}>
-          <div value={value} index={0}>
-            Item One
-          </div>
-          <div value={value} index={1}>
-            Item Two
-          </div>
-          <div value={value} index={2}>
-            Item Three
-          </div>
+          <ContainerTabContent value={value} index={0}>
+            <StatsTab pokemon={state.activePokemon} />
+          </ContainerTabContent>
+          <ContainerTabContent value={value} index={1}>
+            <AboutTab pokemon={state.activePokemon} />
+          </ContainerTabContent>
+          <ContainerTabContent value={value} index={2}>
+            <EvolutionTab pokemon={state.activePokemon} />
+          </ContainerTabContent>
         </SwipeableViews>
       </TabsContentContainer>
     </DetailsTabsContainer>
@@ -61,7 +64,7 @@ export const DetailsTabsContainer = styled.div`
 
 export const TabsContentContainer = styled.div`
   .react-swipeable-view-container {
-    min-height: 200px;
+    min-height: 400px;
   }
 `;
 
@@ -77,4 +80,8 @@ export const TabCustom = styled(Tab)`
   && {
     text-transform: none;
   }
+`;
+
+export const ContainerTabContent = styled.div`
+  margin: 15px 30px;
 `;
