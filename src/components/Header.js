@@ -9,7 +9,8 @@ import { QuestionCircle } from "styled-icons/fa-regular/QuestionCircle";
 import { Search } from "styled-icons/fa-solid/Search";
 
 import { GlobalContext } from "../contexts/GlobalContext";
-import Logo from "../assets/logo.svg";
+import Pokeball from "../assets/pokeball.svg";
+import Pokedex from "../assets/pokedex.png";
 
 const HideOnScroll = props => {
   const { children, window } = props;
@@ -34,8 +35,15 @@ export default function Header(props) {
       <AppBar>
         <Container>
           <LogoContainer>
-            <img src={Logo} alt="Logo"></img>
-            <h1>Pokedex</h1>
+            {/* <img src={Logo} alt="Logo"></img>
+            <h1>Pokedex</h1> */}
+            <img
+              src={Pokeball}
+              alt="Pokedex Logo"
+              width="40px"
+              height="40px"
+            ></img>
+            <img src={Pokedex} alt="Pokedex Logo" height="41px"></img>
           </LogoContainer>
           <NavContainer>
             <IconButtonCustom>
