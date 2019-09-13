@@ -16,6 +16,7 @@ const GET_ALL_POKEMONS = gql`
       strengths
       weaknesses
       stats {
+        hp
         attack
         defense
         specialAttack

@@ -9,9 +9,14 @@ import Home from "./pages/Home";
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
-  uri: "http://192.168.1.2:4000/graphql",
-  cache
+  uri: "http://192.168.1.5:4000/graphql",
+  cache,
+  connectToDevTools: true,
+  clientState: { defaults: { pokemons: [] }, resolvers: {} }
 });
+
+// cache.writeData();
+// cache.writeData({ data: { defaults } });
 
 const App = () => (
   <ApolloProvider client={client}>

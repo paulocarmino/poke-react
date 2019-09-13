@@ -7,7 +7,7 @@ import { KeyboardArrowDown } from "styled-icons/material/KeyboardArrowDown";
 
 import { GlobalContext } from "../../contexts/GlobalContext";
 
-const DetailsNavigation = () => {
+const DetailsNavigation = ({ prev, next, idActive }) => {
   const [state, setState] = useContext(GlobalContext);
 
   const toggleDrawer = () => {
@@ -23,14 +23,32 @@ const DetailsNavigation = () => {
         <ArrowDownWhite size="30" title="Back" />
       </IconButtonCustom>
       <PokemonNavigationContainer>
-        <IconButtonCustom>
+        <IconButtonCustom
+          onClick={() =>
+            setState(state => ({
+              ...state,
+              activePokemon: prev,
+              indexActivePokemon: idActive - 1
+            }))
+          }
+          disabled={state.activePokemon.number === "#001"}
+        >
           <ArrowBeforeWhite
             size="30"
             title="Previous Pokemon"
             number={state.activePokemon.number}
           />
         </IconButtonCustom>
-        <IconButtonCustom>
+        <IconButtonCustom
+          onClick={() =>
+            setState(state => ({
+              ...state,
+              activePokemon: next,
+              indexActivePokemon: idActive + 1
+            }))
+          }
+          disabled={state.activePokemon.number === "#100"}
+        >
           <ArrowNextWhite
             size="30"
             title="Next Pokemon"

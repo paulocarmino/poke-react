@@ -10,8 +10,9 @@ import StatsTab from "./StatsTab";
 import EvolutionTab from "./EvolutionTab";
 
 const DetailsTabs = () => {
-  const [value, setValue] = React.useState(0);
+  // eslint-disable-next-line
   const [state, setState] = useContext(GlobalContext);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -29,17 +30,17 @@ const DetailsTabs = () => {
         variant="fullWidth"
         color={state.activePokemon.color}
       >
+        <TabCustom label="About" />
         <TabCustom label="Stats" />
-        <TabCustom label="Details" />
         <TabCustom label="Evolution" />
       </TabsContainer>
       <TabsContentContainer>
         <SwipeableViews index={value} onChangeIndex={handleChangeIndex}>
-          <ContainerTabContent value={value} index={0}>
-            <StatsTab pokemon={state.activePokemon} />
-          </ContainerTabContent>
           <ContainerTabContent value={value} index={1}>
             <AboutTab pokemon={state.activePokemon} />
+          </ContainerTabContent>
+          <ContainerTabContent value={value} index={0}>
+            <StatsTab pokemon={state.activePokemon} />
           </ContainerTabContent>
           <ContainerTabContent value={value} index={2}>
             <EvolutionTab pokemon={state.activePokemon} />

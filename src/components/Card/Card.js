@@ -6,7 +6,7 @@ import CardInfo from "./CardInfo";
 
 import { GlobalContext } from "../../contexts/GlobalContext";
 
-const Card = ({ pokemon, id, history }) => {
+const Card = ({ pokemon, id }) => {
   // eslint-disable-next-line
   const [state, setState] = useContext(GlobalContext);
 
@@ -18,7 +18,8 @@ const Card = ({ pokemon, id, history }) => {
           setState(state => ({
             ...state,
             detailsIsOpen: true,
-            activePokemon: pokemon
+            activePokemon: pokemon,
+            indexActivePokemon: id
           }))
         }
       >

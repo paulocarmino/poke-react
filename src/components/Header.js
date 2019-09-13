@@ -1,8 +1,5 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Slide from "@material-ui/core/Slide";
 import AppBar from "@material-ui/core/AppBar";
 import IconButton from "@material-ui/core/IconButton";
 import { QuestionCircle } from "styled-icons/fa-regular/QuestionCircle";
@@ -12,18 +9,8 @@ import { GlobalContext } from "../contexts/GlobalContext";
 import Pokeball from "../assets/pokeball.svg";
 import Pokedex from "../assets/pokedex.png";
 
-const HideOnScroll = props => {
-  const { children, window } = props;
-  const trigger = useScrollTrigger({ target: window ? window() : undefined });
-
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  );
-};
-
 export default function Header(props) {
+  // eslint-disable-next-line
   const [state, setState] = useContext(GlobalContext);
 
   const openAbout = () => {
@@ -31,31 +18,29 @@ export default function Header(props) {
   };
 
   return (
-    <HideOnScroll {...props}>
-      <AppBar>
-        <Container>
-          <LogoContainer>
-            {/* <img src={Logo} alt="Logo"></img>
+    <AppBar>
+      <Container>
+        <LogoContainer>
+          {/* <img src={Logo} alt="Logo"></img>
             <h1>Pokedex</h1> */}
-            <img
-              src={Pokeball}
-              alt="Pokedex Logo"
-              width="40px"
-              height="40px"
-            ></img>
-            <img src={Pokedex} alt="Pokedex Logo" height="41px"></img>
-          </LogoContainer>
-          <NavContainer>
-            <IconButtonCustom>
-              <SearchWhite size="20" title="Back" />
-            </IconButtonCustom>
-            <IconButtonCustom onClick={openAbout}>
-              <QuestionWhite size="22" title="Back" />
-            </IconButtonCustom>
-          </NavContainer>
-        </Container>
-      </AppBar>
-    </HideOnScroll>
+          <img
+            src={Pokeball}
+            alt="Pokedex Logo"
+            width="40px"
+            height="40px"
+          ></img>
+          <img src={Pokedex} alt="Pokedex Logo" height="41px"></img>
+        </LogoContainer>
+        <NavContainer>
+          <IconButtonCustom>
+            <SearchWhite size="20" title="Back" />
+          </IconButtonCustom>
+          <IconButtonCustom onClick={openAbout}>
+            <QuestionWhite size="22" title="Back" />
+          </IconButtonCustom>
+        </NavContainer>
+      </Container>
+    </AppBar>
   );
 }
 

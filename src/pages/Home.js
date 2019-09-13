@@ -6,7 +6,7 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import { GlobalContext } from "../contexts/GlobalContext";
 import Header from "../components/Header";
 import ListPokemons from "../components/ListPokemons";
-import SearchBar from "../components/Shared/SearchBar";
+// import SearchBar from "../components/Shared/SearchBar";
 
 import Details from "../pages/Details";
 

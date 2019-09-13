@@ -20,6 +20,7 @@ const ListPokemons = () => {
     updateQuery: (prev, { fetchMoreResult, ...rest }) => {
       if (!fetchMoreResult) return prev;
       if (!prev) return;
+
       return {
         ...fetchMoreResult,
         pokemonsList: {

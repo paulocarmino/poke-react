@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import Types from "../Shared/Types/Types";
-
 const EvolutionTab = ({ pokemon }) => {
   return (
     <EvolutionTabContainer>
