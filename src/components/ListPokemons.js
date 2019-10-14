@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import media from "styled-media-query";
 import { useQuery } from "@apollo/react-hooks";
 
 import GET_ALL_POKEMONS from "../graphql/GetAllPokemons";
@@ -53,4 +54,9 @@ export const ListPokemonsContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 10px;
   margin: 10px 0px;
+
+  ${media.greaterThan("medium")`
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin: 10px 0px;
+  `}
 `;

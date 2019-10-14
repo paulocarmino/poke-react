@@ -12,8 +12,9 @@ export default createGlobalStyle`
 
 	html, body, #root {
 		height: 100%;
-		max-width: 395px;
+    width: 100%;
 	}
+
 
 	body {
 		font: 14px 'Roboto', sans-serif;

@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import media from "styled-media-query";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Container from "@material-ui/core/Container";
 
 import { GlobalContext } from "../contexts/GlobalContext";
 import Header from "../components/Header";
 import ListPokemons from "../components/ListPokemons";
-// import SearchBar from "../components/Shared/SearchBar";
 
 import Details from "../pages/Details";
 
@@ -24,10 +24,8 @@ const Home = () => {
   return (
     <>
       <Header />
-      <HomeContainer>
+      <HomeContainer maxWidth="lg">
         <HomeContent>
-          {/* <SearchBar /> */}
-          <h2>Welcome, stranger...</h2>
           <ListPokemons />
         </HomeContent>
       </HomeContainer>
@@ -62,9 +60,13 @@ const Home = () => {
 
 export default Home;
 
-export const HomeContainer = styled.div`
+export const HomeContainer = styled(Container)`
   margin: 0px 15px;
-  margin-top: 80px;
+  margin-top: 70px;
+
+  ${media.greaterThan("medium")`
+    margin-top: 65px;
+  `}
 `;
 export const HomeContent = styled.div`
   h2 {
@@ -74,7 +76,4 @@ export const HomeContent = styled.div`
 
 export const DrawerContainer = styled.div`
   width: 100%;
-  ${media.greaterThan("medium")`
-    max-width: 395px;
-  `}
 `;

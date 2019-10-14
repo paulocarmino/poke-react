@@ -1,62 +1,61 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
+import media from "styled-media-query";
 import AppBar from "@material-ui/core/AppBar";
 import IconButton from "@material-ui/core/IconButton";
+import { useScrollTrigger } from "@material-ui/core";
 import { QuestionCircle } from "styled-icons/fa-regular/QuestionCircle";
 import { Search } from "styled-icons/fa-solid/Search";
 
-import { GlobalContext } from "../contexts/GlobalContext";
+import SearchBar from "../components/Shared/SearchBar";
+
 import Pokeball from "../assets/pokeball.svg";
-import Pokedex from "../assets/pokedex.png";
 
 export default function Header(props) {
-  // eslint-disable-next-line
-  const [state, setState] = useContext(GlobalContext);
+  function ElevationScroll(props) {
+    const { children } = props;
+    const trigger = useScrollTrigger({
+      disableHysteresis: true,
+      threshold: 0
+    });
 
-  const openAbout = () => {
-    setState(state => ({ ...state, aboutIsOpen: true }));
-  };
+    return React.cloneElement(children, {
+      elevation: trigger ? 4 : 0
+    });
+  }
 
   return (
-    <AppBar>
-      <Container>
-        <LogoContainer>
-          {/* <img src={Logo} alt="Logo"></img>
-            <h1>Pokedex</h1> */}
-          <img
-            src={Pokeball}
-            alt="Pokedex Logo"
-            width="40px"
-            height="40px"
-          ></img>
-          <img src={Pokedex} alt="Pokedex Logo" height="41px"></img>
-        </LogoContainer>
-        <NavContainer>
-          <IconButtonCustom>
-            <SearchWhite size="20" title="Back" />
-          </IconButtonCustom>
-          <IconButtonCustom onClick={openAbout}>
-            <QuestionWhite size="22" title="Back" />
-          </IconButtonCustom>
-        </NavContainer>
-      </Container>
-    </AppBar>
+    <ElevationScroll {...props}>
+      <AppBar>
+        <Container>
+          <LogoContainer>
+            <div>
+              <img
+                src={Pokeball}
+                alt="Pokedex Logo"
+                width="40px"
+                height="40px"
+              ></img>
+            </div>
+            <SearchBar />
+          </LogoContainer>
+        </Container>
+      </AppBar>
+    </ElevationScroll>
   );
 }
 
 export const Container = styled.div`
+  display: flex;
   height: 60px;
   padding: 0px 15px;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: rgb(229, 57, 53);
-  background: linear-gradient(
-    180deg,
-    rgba(229, 57, 53, 1) 0%,
-    rgba(227, 89, 87, 1) 100%
-  );
-  color: #fff;
+  background: #fff;
+  color: #000;
+
+  ${media.greaterThan("medium")`
+    height: 55px;
+  `}
 
   h1 {
     font-size: 24px;
@@ -78,8 +77,12 @@ export const NavContainer = styled.div`
 
 export const LogoContainer = styled.div`
   display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
   img {
-    margin-right: 10px;
+    display: block;
+    margin-right: 15px;
   }
 `;
 
