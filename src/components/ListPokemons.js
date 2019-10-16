@@ -1,38 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import media from "styled-media-query";
 import { useQuery } from "@apollo/react-hooks";
+import { Waypoint } from "react-waypoint";
 
 import GET_ALL_POKEMONS from "../graphql/GetAllPokemons";
-import { GlobalContext } from "../contexts/GlobalContext";
 import Card from "./Card/Card";
-import Loading from "../components/Shared/Loading";
 import Error from "../components/Shared/Error";
 
 const ListPokemons = () => {
-  const { loading, error, data, fetchMore } = useQuery(GET_ALL_POKEMONS);
-  // eslint-disable-next-line
-  const [state, setState] = useContext(GlobalContext);
-
-  fetchMore({
-    variables: {
-      name: state.searchTerm
-    },
-    updateQuery: (prev, { fetchMoreResult, ...rest }) => {
-      if (!fetchMoreResult) return prev;
-      if (!prev) return;
-
-      return {
-        ...fetchMoreResult,
-        pokemonsList: {
-          ...fetchMoreResult.pokemons,
-          pokemonsList: [...prev.pokemons, ...fetchMoreResult.pokemons]
-        }
-      };
-    }
-  });
-
-  if (loading) return <Loading />;
+  const { error, data, fetchMore } = useQuery(GET_ALL_POKEMONS);
 
   if (error) return <Error />;
 
@@ -40,7 +17,31 @@ const ListPokemons = () => {
     <ListPokemonsContainer>
       {data &&
         data.pokemons.map((pokemon, i) => (
-          <Card key={pokemon._id} pokemon={pokemon} id={i} />
+          <div key={pokemon._id}>
+            <Card pokemon={pokemon} id={i} />
+            {i === data.pokemons.length - 10 && (
+              <Waypoint
+                onEnter={() => {
+                  fetchMore({
+                    variables: {
+                      skip: data.pokemons.length
+                    },
+                    updateQuery: (prev, { fetchMoreResult }) => {
+                      if (!fetchMoreResult) return prev;
+                      if (!prev) return;
+
+                      return Object.assign({}, prev, {
+                        pokemons: [
+                          ...prev.pokemons,
+                          ...fetchMoreResult.pokemons
+                        ]
+                      });
+                    }
+                  });
+                }}
+              />
+            )}
+          </div>
         ))}
     </ListPokemonsContainer>
   );
@@ -49,7 +50,8 @@ const ListPokemons = () => {
 export default ListPokemons;
 
 export const ListPokemonsContainer = styled.div`
-  overflow: hidden;
+  /* overflow: auto; */
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 10px;

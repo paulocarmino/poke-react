@@ -6,7 +6,7 @@ const GlobalProvider = props => {
   const [state, setState] = useState({
     pokemonsList: [],
     searchTerm: "",
-    aboutIsOpen: false,
+    onTop: "",
     detailsIsOpen: false,
     activePokemon: {},
     indexActivePokemon: "",

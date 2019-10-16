@@ -3,9 +3,9 @@ import styled from "styled-components";
 import media from "styled-media-query";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import Container from "@material-ui/core/Container";
+import { Waypoint } from "react-waypoint";
 
 import { GlobalContext } from "../contexts/GlobalContext";
-import Header from "../components/Header";
 import ListPokemons from "../components/ListPokemons";
 
 import Details from "../pages/Details";
@@ -17,19 +17,25 @@ const Home = () => {
     setState(state => ({ ...state, detailsIsOpen: false }));
   };
 
-  const toggleAbout = () => {
-    setState(state => ({ ...state, aboutIsOpen: false }));
-  };
-
   return (
-    <>
-      <Header />
-      <HomeContainer maxWidth="lg">
-        <HomeContent>
-          <ListPokemons />
-        </HomeContent>
-      </HomeContainer>
-
+    <HomeContainer maxWidth="lg">
+      <Waypoint
+        onEnter={() => {
+          setState(state => ({
+            ...state,
+            onTop: true
+          }));
+        }}
+        onLeave={() => {
+          setState(state => ({
+            ...state,
+            onTop: false
+          }));
+        }}
+      />
+      <HomeContent>
+        <ListPokemons />
+      </HomeContent>
       <SwipeableDrawer
         disableBackdropTransition
         anchor="bottom"
@@ -41,26 +47,14 @@ const Home = () => {
           <Details pokemon={state.activePokemon} />
         </DrawerContainer>
       </SwipeableDrawer>
-
-      <SwipeableDrawer
-        disableBackdropTransition
-        anchor="top"
-        open={state.aboutIsOpen}
-        onOpen={toggleAbout}
-        onClose={toggleAbout}
-      >
-        <DrawerContainer>
-          <h1>About this Project</h1>
-          <p>Soon!</p>
-        </DrawerContainer>
-      </SwipeableDrawer>
-    </>
+    </HomeContainer>
   );
 };
 
 export default Home;
 
 export const HomeContainer = styled(Container)`
+  height: 100%;
   margin: 0px 15px;
   margin-top: 70px;
 
@@ -69,6 +63,7 @@ export const HomeContainer = styled(Container)`
   `}
 `;
 export const HomeContent = styled.div`
+  height: 100%;
   h2 {
     margin-bottom: 20px;
   }

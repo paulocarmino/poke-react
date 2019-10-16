@@ -1,8 +1,13 @@
 import { gql } from "apollo-boost";
 
 const GET_ALL_POKEMONS = gql`
-  query Pokemons($name: String) {
-    pokemons(where: { name_contains: $name }, orderBy: number_ASC) {
+  query Pokemons($name: String, $skip: Int) {
+    pokemons(
+      where: { name_contains: $name }
+      first: 20
+      skip: $skip
+      orderBy: number_ASC
+    ) {
       _id
       number
       name

@@ -1,32 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import media from "styled-media-query";
 import AppBar from "@material-ui/core/AppBar";
 import IconButton from "@material-ui/core/IconButton";
-import { useScrollTrigger } from "@material-ui/core";
 import { QuestionCircle } from "styled-icons/fa-regular/QuestionCircle";
 import { Search } from "styled-icons/fa-solid/Search";
 
+import { GlobalContext } from "../contexts/GlobalContext";
 import SearchBar from "../components/Shared/SearchBar";
-
 import Pokeball from "../assets/pokeball.svg";
 
 export default function Header(props) {
-  function ElevationScroll(props) {
-    const { children } = props;
-    const trigger = useScrollTrigger({
-      disableHysteresis: true,
-      threshold: 0
-    });
+  function ElevationScroll({ children, window }) {
+    //eslint-disable-next-line
+    const [state, setState] = useContext(GlobalContext);
+
+    const onTop = state.onTop;
 
     return React.cloneElement(children, {
-      elevation: trigger ? 4 : 0
+      elevation: !onTop ? 4 : 0
     });
   }
 
   return (
     <ElevationScroll {...props}>
-      <AppBar>
+      <AppBar elevation="4">
         <Container>
           <LogoContainer>
             <div>
