@@ -10,8 +10,13 @@ import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 
 const POKEMON_LIST = gql`
-  query Pokemons($name: String) {
-    pokemons(where: { name_contains: $name }, orderBy: number_ASC) @client {
+  query Pokemons($name: String, $skip: Int) {
+    pokemons(
+      where: { name_contains: $name }
+      first: 20
+      skip: $skip
+      orderBy: number_ASC
+    ) {
       _id
       number
       name
@@ -43,6 +48,8 @@ const Details = () => {
   const { data, loading } = useQuery(POKEMON_LIST);
 
   if (loading) return "Loading";
+
+  console.log(state.indexActivePokemon);
 
   const prevPokemon = data.pokemons[state.indexActivePokemon - 1];
   const nextPokemon = data.pokemons[state.indexActivePokemon + 1];

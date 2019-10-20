@@ -10,73 +10,73 @@ const StatsTab = ({ pokemon }) => {
   return (
     <StatsTabContainer>
       <h4>Basics Stats</h4>
-      <StatField colorCustom={pokemon.color}>
+      <StatField>
         <p>HP</p>
         <span>{pokemon.stats.hp}</span>
         <StatBar
           variant="determinate"
           width="100%"
           value={normalise(pokemon.stats.hp)}
-          colorCustom={pokemon.color}
+          customcolor={pokemon.color}
         />
       </StatField>
 
-      <StatField colorCustom={pokemon.color}>
+      <StatField>
         <p>Atk</p>
         <span>{pokemon.stats.attack}</span>
         <StatBar
           variant="determinate"
           width="100%"
           value={normalise(pokemon.stats.attack)}
-          colorCustom={pokemon.color}
+          customcolor={pokemon.color}
         />
       </StatField>
 
-      <StatField colorCustom={pokemon.color}>
+      <StatField>
         <p>Def</p>
         <span>{pokemon.stats.defense}</span>
         <StatBar
           variant="determinate"
           width="100%"
           value={normalise(pokemon.stats.defense)}
-          colorCustom={pokemon.color}
+          customcolor={pokemon.color}
         />
       </StatField>
 
-      <StatField colorCustom={pokemon.color}>
+      <StatField>
         <p>SpAtk</p>
         <span>{pokemon.stats.specialAttack}</span>
         <StatBar
           variant="determinate"
           width="100%"
           value={normalise(pokemon.stats.specialAttack)}
-          colorCustom={pokemon.color}
+          customcolor={pokemon.color}
         />
       </StatField>
 
-      <StatField colorCustom={pokemon.color}>
+      <StatField>
         <p>SpDef</p>
         <span>{pokemon.stats.specialDefense}</span>
         <StatBar
           variant="determinate"
           width="100%"
           value={normalise(pokemon.stats.specialDefense)}
-          colorCustom={pokemon.color}
+          customcolor={pokemon.color}
         />
       </StatField>
 
-      <StatField colorCustom={pokemon.color}>
+      <StatField>
         <p>Speed</p>
         <span>{pokemon.stats.speed}</span>
         <StatBar
           variant="determinate"
           width="100%"
           value={normalise(pokemon.stats.speed)}
-          colorCustom={pokemon.color}
+          customcolor={pokemon.color}
         />
       </StatField>
 
-      <StatField colorCustom={pokemon.color}>
+      <StatField>
         <p>Total</p>
         <span>{pokemon.stats.total}</span>
         {/* <SpanTotal>Others Pokemons with this total</SpanTotal> */}
@@ -131,7 +131,7 @@ export const StatBar = styled(LinearProgress)`
     height: 7px;
     border-radius: 2px;
     .MuiLinearProgress-bar {
-      background-color: ${props => props.colorCustom};
+      background-color: ${props => props.customcolor};
     }
   }
 `;
