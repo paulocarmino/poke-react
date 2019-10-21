@@ -72,4 +72,5 @@ export default Details;
 export const DetailsContainer = styled.div`
   min-height: 100vh;
   background-color: ${props => (props.color ? props.color : "white")};
+  filter: saturate(1.8);
 `;

@@ -45,4 +45,5 @@ export const Container = styled.div`
   z-index: 1;
   right: -50px;
   cursor: pointer;
+  filter: saturate(1.8);
 `;

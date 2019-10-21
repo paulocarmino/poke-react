@@ -12,7 +12,7 @@ export const Container = styled.div`
     bottom: -13px;
     height: 100%;
     width: 100%;
-    filter: saturate(1.8);
+    /* filter: saturate(1.8); */
   }
 `;
 

@@ -36,6 +36,7 @@ const Home = () => {
       <HomeContent>
         <ListPokemons />
       </HomeContent>
+
       <SwipeableDrawer
         disableBackdropTransition
         anchor="bottom"
