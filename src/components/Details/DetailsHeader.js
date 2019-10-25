@@ -51,9 +51,9 @@ export const RightSide = styled.div`
   z-index: 1;
 
   img {
-    height: 160px;
-    width: 170px;
-    filter: saturate(1.6);
+    max-height: 160px;
+    max-width: 170px;
+    /* filter: saturate(1.6); */
   }
 `;
 
