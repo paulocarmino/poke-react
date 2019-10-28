@@ -1,40 +1,40 @@
-# Estudos React
+<p align="center"><img width=20% src="https://pokedex.paulocarmino.com/pokedex-logo.png"></p>
+<h1 align="center" style="font-size:4em">Pokedex React</h1>
+<p align="center">Pokedex desenvolvida em ReactJS com uma interface bacana.</p>
+<p align="center"><img width=100% src="https://pokedex.paulocarmino.com/pokedex-preview.png"></p>
+<p align="center">Prewiew: <a href="https://pokedex.paulocarmino.com">https://pokedex.paulocarmino.com</a></p>
 
-## App Pokemon
 
-- App criado com react-create-app
-- Excluido alguns arquivos desncessários
-- Instalado styled-components e setado um estilo global:
+  
+#  Tecnologias envolvidas
+
+-  ReactJS
+-  GraphQL (Apollo Client)
+-  Styled Components
+-  React Waypont (para Lazy Loading)
+-  React Swipeable Routes
+
+#  Rodando o projeto
 
 ```
-import { createGlobalStyle } from "styled-components";
+# Clone esse repositorio
+git clone ....
+ 
+# Entre no repositorio
+cd pokedex-react
 
-export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+# Instale as dependencias
+yarn install
 
-  * {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    box-sizing: border-box;
-  }
-
-  html, body, #root {
-    height: 100%;
-  }
-
-  body {
-    font: 14px 'Roboto', sans-serif;
-    background: #ecf1f8;
-    color: #333;
-    -webkit-font-smoothing: antialiased !important;
-    -moz-osx-font-smoothing: grayscale !important;
-  }
-
-  ul {
-    list-style: none;
-  }
-`;
+# Rode o app
+yarn start
 ```
 
-- Criado os components necessários com styled-componets: (Preencher depois);
+  
+
+#  Créditos
+-  Imagem usada como inspiração do Dribble;
+-  pokemonpets pelas informações e imagens dos pokemons
+
+#  Licença
+MIT
