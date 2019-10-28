@@ -24,7 +24,7 @@ const SearchBar = () => {
       <InputSearch
         onChange={filterList}
         type="text"
-        placeholder="Search pokemons by name..."
+        placeholder="Search not working, YET!"
       />
     </SearchBarContainer>
   );

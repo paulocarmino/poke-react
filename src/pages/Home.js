@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import media from "styled-media-query";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Drawer from "@material-ui/core/Drawer";
+
 import Container from "@material-ui/core/Container";
 import { Waypoint } from "react-waypoint";
 
@@ -16,6 +17,8 @@ const Home = () => {
   const togglePokemonDetails = () => {
     setState(state => ({ ...state, detailsIsOpen: false }));
   };
+
+  // disableBodyScroll();
 
   return (
     <HomeContainer maxWidth="lg">
@@ -37,17 +40,18 @@ const Home = () => {
         <ListPokemons />
       </HomeContent>
 
-      <SwipeableDrawer
+      <Drawer
         disableBackdropTransition
         anchor="bottom"
         open={state.detailsIsOpen}
         onOpen={togglePokemonDetails}
         onClose={togglePokemonDetails}
+        id="drawer"
       >
         <DrawerContainer>
           <Details pokemon={state.activePokemon} />
         </DrawerContainer>
-      </SwipeableDrawer>
+      </Drawer>
     </HomeContainer>
   );
 };

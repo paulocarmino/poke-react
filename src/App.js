@@ -8,7 +8,10 @@ import GlobalStyle from "./styles/global";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache({
+  addTypename: false
+});
+
 const client = new ApolloClient({
   // uri: "http://10.61.217.146:4000/graphql",
   uri: "https://poke-api.paulocarmino.com/graphql",
@@ -16,9 +19,6 @@ const client = new ApolloClient({
   connectToDevTools: true,
   clientState: { defaults: { pokemons: [] }, resolvers: {} }
 });
-
-// cache.writeData();
-// cache.writeData({ data: { defaults } });
 
 const App = () => {
   return (
