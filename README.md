@@ -3,9 +3,7 @@
 <p align="center">Pokedex desenvolvida em ReactJS com uma interface bacana.</p>
 <p align="center"><img width=100% src="https://pokedex.paulocarmino.com/pokedex-preview.png"></p>
 <p align="center">Prewiew: <a href="https://pokedex.paulocarmino.com">https://pokedex.paulocarmino.com</a></p>
-
-
-  
+ 
 #  Tecnologias envolvidas
 
 -  ReactJS
@@ -30,11 +28,9 @@ yarn install
 yarn start
 ```
 
-  
-
 #  Créditos
--  Imagem usada como inspiração do Dribble;
--  pokemonpets pelas informações e imagens dos pokemons
+-  Inspiração pelo layout incrível desenhado pelo designer <a href="https://www.instagram.com/saepulnahwan/">Saepul Nahwan</a>, no <a href="https://dribbble.com/shots/6540871-Pokedex-App/">Dribbble</a>.
+-  <a href="https://www.pokemonpets.com">Pokemon Pets</a> pelas informações e sprites;
 
 #  Licença
 MIT
