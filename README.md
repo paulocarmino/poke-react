@@ -3,23 +3,23 @@
 <p align="center">Pokedex desenvolvida em ReactJS com uma interface intuitiva.</p>
 <p align="center"><img width=100% src="https://pokedex.paulocarmino.com/pokedex-preview.png"></p>
 <p align="center">Prewiew: <a href="https://pokedex.paulocarmino.com">https://pokedex.paulocarmino.com</a></p>
- 
-#  Tecnologias envolvidas
 
--  ReactJS
--  GraphQL (Apollo Client)
--  Styled Components
--  React Waypont (para Lazy Loading)
--  React Swipeable Routes
+# Tecnologias envolvidas
 
-#  Rodando o projeto
+- ReactJS
+- GraphQL (Apollo Client)
+- Styled Components
+- React Waypont (para Lazy Loading)
+- React Swipeable Routes
+
+# Rodando o projeto
 
 ```
 # Clone esse repositorio
-git clone ....
- 
+git clone https://github.com/paulocarmino/poke-react
+
 # Entre no repositorio
-cd pokedex-react
+cd poke-react
 
 # Instale as dependencias
 yarn install
@@ -28,9 +28,11 @@ yarn install
 yarn start
 ```
 
-#  Créditos
--  Inspiração pelo layout incrível desenhado pelo designer <a href="https://www.instagram.com/saepulnahwan/">Saepul Nahwan</a>, no <a href="https://dribbble.com/shots/6540871-Pokedex-App/">Dribbble</a>.
--  <a href="https://www.pokemonpets.com">Pokemon Pets</a> pelas informações e sprites;
+# Créditos
 
-#  Licença
+- Inspiração pelo layout incrível desenhado pelo designer <a href="https://www.instagram.com/saepulnahwan/">Saepul Nahwan</a>, no <a href="https://dribbble.com/shots/6540871-Pokedex-App/">Dribbble</a>.
+- <a href="https://www.pokemonpets.com">Pokemon Pets</a> pelas informações e sprites;
+
+# Licença
+
 MIT
