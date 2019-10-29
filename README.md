@@ -1,6 +1,6 @@
 <p align="center"><img width=20% src="https://pokedex.paulocarmino.com/pokedex-logo.png"></p>
 <h1 align="center" style="font-size:4em">Pokedex React</h1>
-<p align="center">Pokedex desenvolvida em ReactJS com uma interface completamente intuitiva.</p>
+<p align="center">Pokedex desenvolvida em ReactJS com uma interface intuitiva.</p>
 <p align="center"><img width=100% src="https://pokedex.paulocarmino.com/pokedex-preview.png"></p>
 <p align="center">Prewiew: <a href="https://pokedex.paulocarmino.com">https://pokedex.paulocarmino.com</a></p>
  
